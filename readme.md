@@ -48,7 +48,7 @@ wget -qO- https://raw.githubusercontent.com/summerblue/laravel-ubuntu-init/maste
 ### Ubuntu 20.04
 
 ```
-wget -qO- https://raw.githubusercontent.com/summerblue/laravel-ubuntu-init/master/download.20.04.sh - | bash
+wget -qO- https://raw.githubusercontent.com/yhif/laravel-ubuntu-init/master/download.20.04.sh - | bash
 ```
 
 
