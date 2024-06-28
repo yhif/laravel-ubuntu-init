@@ -21,7 +21,8 @@ function install_java {
 
 function install_es {
     curl -sS https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
-    echo "deb https://mirrors.tuna.tsinghua.edu.cn/elasticstack/${VERSION}.x/apt stable main" > /etc/apt/sources.list.d/elastic-${VERSION}.x.list
+    # echo "deb https://mirrors.tuna.tsinghua.edu.cn/elasticstack/${VERSION}.x/apt stable main" > /etc/apt/sources.list.d/elastic-${VERSION}.x.list
+    echo "deb https://artifacts.elastic.co/packages/${VERSION}.x/apt stable main" > /etc/apt/sources.list.d/elastic-${VERSION}.x.list
     apt-get update
     apt-get install -y elasticsearch
     service elasticsearch start

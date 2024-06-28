@@ -14,7 +14,7 @@ function init_system {
     locale-gen en_US.UTF-8
     locale-gen zh_CN.UTF-8
 
-    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+    # ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
     apt-get update
     apt-get install -y software-properties-common
@@ -31,7 +31,7 @@ function init_alias {
 function init_repositories {
     add-apt-repository -y ppa:ondrej/php
     add-apt-repository -y ppa:nginx/stable
-    grep -rl ppa.launchpad.net /etc/apt/sources.list.d/ | xargs sed -i 's/http:\/\/ppa.launchpad.net/https:\/\/launchpad.proxy.ustclug.org/g'
+    # grep -rl ppa.launchpad.net /etc/apt/sources.list.d/ | xargs sed -i 's/http:\/\/ppa.launchpad.net/https:\/\/launchpad.proxy.ustclug.org/g'
 
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
     echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
@@ -39,8 +39,8 @@ function init_repositories {
     # https://mirrors.tuna.tsinghua.edu.cn/  2021-02-05移除 nodesource 镜像
 
     curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
-    echo 'deb https://deb.nodesource.com/node_10.x focal main' > /etc/apt/sources.list.d/nodesource.list
-    echo 'deb-src https://deb.nodesource.com/node_10.x focal main' >> /etc/apt/sources.list.d/nodesource.list
+    echo 'deb https://deb.nodesource.com/node_20.x focal main' > /etc/apt/sources.list.d/nodesource.list
+    echo 'deb-src https://deb.nodesource.com/node_20.x focal main' >> /etc/apt/sources.list.d/nodesource.list
 
     apt-get update
 }
@@ -51,15 +51,15 @@ function install_basic_softwares {
 
 function install_node_yarn {
     apt-get install -y nodejs yarn
-    sudo -H -u ${WWW_USER} sh -c 'cd ~ && yarn config set registry https://registry.npm.taobao.org'
+    # sudo -H -u ${WWW_USER} sh -c 'cd ~ && yarn config set registry https://registry.npm.taobao.org'
 }
 
 function install_php {
-    apt-get install -y php7.4-bcmath php7.4-cli php7.4-curl php7.4-fpm php7.4-gd php7.4-mbstring php7.4-mysql php7.4-opcache php7.4-pgsql php7.4-readline php7.4-xml php7.4-zip php7.4-sqlite3 php7.4-redis
+    apt-get install -y php8.3-bcmath php8.3-cli php8.3-curl php8.3-fpm php8.3-gd php8.3-mbstring php8.3-mysql php8.3-opcache php8.3-pgsql php8.3-readline php8.3-xml php8.3-zip php8.3-sqlite3 php8.3-redis
 }
 
 function install_others {
-    apt-get remove -y apache2
+    # apt-get remove -y apache2
     debconf-set-selections <<< "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASSWORD}"
     debconf-set-selections <<< "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWORD}"
     apt-get install -y nginx mysql-server redis-server memcached beanstalkd sqlite3
@@ -70,7 +70,7 @@ function install_others {
 function install_composer {
     curl https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer
     chmod +x /usr/local/bin/composer
-    sudo -H -u ${WWW_USER} sh -c  'cd ~ && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/'
+    # sudo -H -u ${WWW_USER} sh -c  'cd ~ && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/'
 }
 
 call_function init_system "正在初始化系统" ${LOG_PATH}
