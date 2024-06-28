@@ -17,7 +17,7 @@ function init_system {
     # ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
     apt-get update
-    apt-get install -y software-properties-common
+    apt-get install -y software-properties-common ca-certificates lsb-release apt-transport-https 
 
     init_alias
 }
@@ -30,7 +30,7 @@ function init_alias {
 
 function init_repositories {
     add-apt-repository -y ppa:ondrej/php
-    add-apt-repository -y ppa:nginx/stable
+    add-apt-repository -y ppa:ondrej/nginx
     # grep -rl ppa.launchpad.net /etc/apt/sources.list.d/ | xargs sed -i 's/http:\/\/ppa.launchpad.net/https:\/\/launchpad.proxy.ustclug.org/g'
 
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -38,9 +38,11 @@ function init_repositories {
 
     # https://mirrors.tuna.tsinghua.edu.cn/  2021-02-05移除 nodesource 镜像
 
-    curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
-    echo 'deb https://deb.nodesource.com/node_20.x focal main' > /etc/apt/sources.list.d/nodesource.list
-    echo 'deb-src https://deb.nodesource.com/node_20.x focal main' >> /etc/apt/sources.list.d/nodesource.list
+    # curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
+    # echo 'deb https://deb.nodesource.com/node_20.x focal main' > /etc/apt/sources.list.d/nodesource.list
+    # echo 'deb-src https://deb.nodesource.com/node_20.x focal main' >> /etc/apt/sources.list.d/nodesource.list
+
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
 
     apt-get update
 }
