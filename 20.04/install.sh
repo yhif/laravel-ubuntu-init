@@ -17,7 +17,7 @@ function init_system {
     # ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
     apt-get update
-    apt-get install -y software-properties-common ca-certificates lsb-release apt-transport-https curl
+    apt-get install -y software-properties-common curl
 
     init_alias
 }
