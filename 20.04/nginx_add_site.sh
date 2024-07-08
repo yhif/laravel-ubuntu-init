@@ -7,7 +7,7 @@ source ${CURRENT_DIR}/../common/common.sh
 
 read -r -p "请输入项目名：" project
 
-[[ $project =~ ^[a-zA-Z\0-9_\-\.]+$ ]] || {
+[[ $project =~ ^[a-zA-Z0-9_.\-]+$ ]] || {
     ansi -n --bold --bg-red "项目名包含非法字符"
     exit 1
 }
