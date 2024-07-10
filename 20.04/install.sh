@@ -51,7 +51,7 @@ function install_basic_softwares {
     apt-get install -y curl git build-essential unzip supervisor
 }
 
-function install_node_yarn {
+function install_node {
     apt-get install -y nodejs
     # sudo -H -u ${WWW_USER} sh -c 'cd ~ && yarn config set registry https://registry.npm.taobao.org'
 }
@@ -80,7 +80,7 @@ call_function init_repositories "正在初始化软件源" ${LOG_PATH}
 call_function install_basic_softwares "正在安装基础软件" ${LOG_PATH}
 call_function install_php "正在安装 PHP" ${LOG_PATH}
 call_function install_others "正在安装 Mysql / Nginx / Redis / Memcached / Beanstalkd / Sqlite3" ${LOG_PATH}
-call_function install_node_yarn "正在安装 Nodejs / Yarn" ${LOG_PATH}
+call_function install_node "正在安装 Nodejs" ${LOG_PATH}
 call_function install_composer "正在安装 Composer" ${LOG_PATH}
 
 ansi --green --bold -n "安装完毕"
