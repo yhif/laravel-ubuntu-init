@@ -33,8 +33,8 @@ function init_repositories {
     add-apt-repository -y ppa:ondrej/nginx
     # grep -rl ppa.launchpad.net /etc/apt/sources.list.d/ | xargs sed -i 's/http:\/\/ppa.launchpad.net/https:\/\/launchpad.proxy.ustclug.org/g'
 
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
+    # curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+    # echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
 
     # https://mirrors.tuna.tsinghua.edu.cn/  2021-02-05移除 nodesource 镜像
 
@@ -52,12 +52,12 @@ function install_basic_softwares {
 }
 
 function install_node_yarn {
-    apt-get install -y nodejs yarn
+    apt-get install -y nodejs
     # sudo -H -u ${WWW_USER} sh -c 'cd ~ && yarn config set registry https://registry.npm.taobao.org'
 }
 
 function install_php {
-    apt-get install -y php8.3-bcmath php8.3-cli php8.3-curl php8.3-fpm php8.3-gd php8.3-mbstring php8.3-mysql php8.3-opcache php8.3-pgsql php8.3-readline php8.3-xml php8.3-zip php8.3-sqlite3 php8.3-redis
+    apt-get install -y php8.3-bcmath php8.3-cli php8.3-curl php8.3-fpm php8.3-gd php8.3-mbstring php8.3-intl php8.3-intl php8.3-soap php8.3-mysql php8.3-opcache php8.3-pgsql php8.3-readline php8.3-xml php8.3-zip php8.3-sqlite3 php8.3-redis
 }
 
 function install_others {
